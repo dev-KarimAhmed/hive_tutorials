@@ -27,21 +27,24 @@ class _TestViewState extends State<TestView> {
             ElevatedButton(
                 onPressed: () async {
                   //1- open box
-                  box = await Hive.openBox("putBox");
+                  box = await Hive.openBox("AddData");
                 },
                 child: const Text("Open Box")),
             ElevatedButton(
                 onPressed: () {
-                  //2- Put data in box
-                  box.putAt(0, "Karim");
-                  box.putAt(1, 21);
+                  //2- Add data in box
+                  box.addAll([
+                    "Karim",
+                    true,
+                    3,
+                    [7889, 90]
+                  ]);
                 },
-                child: const Text("Put Data in Box")),
+                child: const Text("Add Data in Box")),
             ElevatedButton(
                 onPressed: () {
                   //3- Print data from box
-                  log(box.get("name").toString());
-                  log(box.get("age").toString());
+                  log(box.get(3).toString());
                 },
                 child: const Text("Display Data")),
           ],
