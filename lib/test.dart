@@ -33,7 +33,8 @@ class _TestViewState extends State<TestView> {
             ElevatedButton(
                 onPressed: () {
                   //2- Put data in box
-                  box.putAll({"name": "Karim Ahmed", "age": 21});
+                  box.putAt(0, "Karim");
+                  box.putAt(1, 21);
                 },
                 child: const Text("Put Data in Box")),
             ElevatedButton(
