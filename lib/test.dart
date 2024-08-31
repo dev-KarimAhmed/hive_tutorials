@@ -1,8 +1,17 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-class TestView extends StatelessWidget {
+class TestView extends StatefulWidget {
   const TestView({super.key});
+
+  @override
+  State<TestView> createState() => _TestViewState();
+}
+
+class _TestViewState extends State<TestView> {
+  late Box box;
 
   @override
   Widget build(BuildContext context) {
@@ -18,15 +27,22 @@ class TestView extends StatelessWidget {
             ElevatedButton(
                 onPressed: () async {
                   //1- open box
-                  await Hive.openBox("testBox");
+                  box = await Hive.openBox("putBox");
                 },
                 child: const Text("Open Box")),
             ElevatedButton(
                 onPressed: () {
-                  //2- access box
-                  Box box = Hive.box("testBox");
+                  //2- Put data in box
+                  box.putAll({"name": "Karim Ahmed", "age": 21});
                 },
-                child: const Text("Access Box")),
+                child: const Text("Put Data in Box")),
+            ElevatedButton(
+                onPressed: () {
+                  //3- Print data from box
+                  log(box.get("name").toString());
+                  log(box.get("age").toString());
+                },
+                child: const Text("Display Data")),
           ],
         ),
       ),
