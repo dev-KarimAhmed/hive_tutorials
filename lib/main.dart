@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:project_1/person_class/person_type_adabter.dart';
 import 'package:project_1/test.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
+  Hive.registerAdapter(PersonTypeAdabter());
   runApp(const MyApp());
 }
 
